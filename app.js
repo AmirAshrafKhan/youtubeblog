@@ -9,15 +9,15 @@ const cookieParser = require("cookie-parser");
 const {
   checkForAuthenticationCookie,
 } = require("./middlewares/authentication.js");
+require("dotenv").config();
 
 const app = express();
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
+// "mongodb+srv://amirashrafwrites:amir1991@amirashraf.wkbm6we.mongodb.net/blogtube"
 mongoose
-  .connect(
-    "mongodb+srv://amirashrafwrites:amir1991@amirashraf.wkbm6we.mongodb.net/blogtube"
-  )
+  .connect(process.env.MONGO_URL)
   .then((e) => console.log("MongoDB Connected"));
 
 app.set("view engine", "ejs");
